@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-card padding>
+    <h3 class="login" style="text-align:center">Login Your Account</h3>
+    <ion-item>
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button color="primary" expand="block">Login</ion-button>
+    <br>
+    <ion-button fill="outline" color="primary" expand="block" routerLink="/add-account" routerDirection="forward">Login With OTP</ion-button>
+  </ion-card>
+</ion-content>
