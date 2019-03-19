@@ -17,9 +17,17 @@ export class AddAccountPage implements OnInit {
       value: '+91'
     },
     {
-      name: 'America',
+      name: 'USA',
       value: '+1'
-    }
+    },
+    {
+      name: 'UK',
+      value: '+44'
+    },
+    {
+      name: 'China',
+      value: '+86'
+    },
   ]
 
   windowRef: any;
@@ -40,13 +48,18 @@ export class AddAccountPage implements OnInit {
     const appVerifire = this.windowRef.recaptchaVarifier;
     const num = this.countryCode+this.phoneNumber;
     firebase.auth().signInWithPhoneNumber(num, appVerifire)
-    .then(result =>{
+    .then(async result =>{
       this.windowRef.confirmationResult = result;
+      const toast = await this.toast.create({
+        message: 'One Time Password has been send',
+        duration: 5000,
+        closeButtonText: 'close',
+        showCloseButton: true
+      });
+      toast.present();
     })
     .catch(async (error) => {
-      if(!error){
-        console.log('OTP Has been send');
-      }else{
+      if(error){
         const toast = await this.toast.create({
           message: error.message,
           duration: 5000,
@@ -54,18 +67,25 @@ export class AddAccountPage implements OnInit {
           showCloseButton: true
         });
         toast.present();
-      }
+      };
     });
   }
 
   verifyCode(){
     this.windowRef.confirmationResult.confirm(this.verificationCode)
-    .then(result => {
+    .then(async result => {
       this.user = result.user;
       if(!this.user){
         console.log("Invalid code");
       }else{
-        this.router.navigate(['/']);
+        const toast = await this.toast.create({
+          message: "You are now logged in",
+          duration: 5000,
+          closeButtonText: 'Close',
+          showCloseButton: true
+        });
+        toast.present();
+        this.router.navigate(['/home']);
       }
     })
     .catch(async (error) => {
