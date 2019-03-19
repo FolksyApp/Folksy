@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCC_exYhELFU0aK1sdqPa-xs9nN1mfn8Dc",
-    authDomain: "folksy3iedc.firebaseapp.com",
-    databaseURL: "https://folksy3iedc.firebaseio.com",
-    projectId: "folksy3iedc",
-    storageBucket: "folksy3iedc.appspot.com",
-    messagingSenderId: "973448763949"
+    apiKey: "AIzaSyDAT4qZ_dJPOoL1Pk05J8eB1cJmpZdtt5w",
+    authDomain: "mecrobotics-9b405.firebaseapp.com",
+    databaseURL: "https://mecrobotics-9b405.firebaseio.com",
+    projectId: "mecrobotics-9b405",
+    storageBucket: "mecrobotics-9b405.appspot.com",
+    messagingSenderId: "98331701271"
   }
 };
 

@@ -3,18 +3,37 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Login With OTP</ion-title>
+    <ion-title>Login with phone</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-card padding>
-      <h3 style="text-align:center">Login With OTP</h3>
+      <h3 style="text-align:center">Request OTP</h3>
+
+      <ion-item>
+        <ion-label>Country</ion-label>
+        <ion-select [(ngModel)]="countryCode" placeholder="Select One">
+          <ion-select-option *ngFor="let country of countries" value={{country.value}}>{{country.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
       <ion-item>
         <ion-label position="floating">Phone</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input [(ngModel)]="phoneNumber" type="text"></ion-input>
       </ion-item>
       <br>
-      <ion-button routerLink="/verify-otp" color="primary" expand="block" routerDirection="forward">Send otp</ion-button>
+      <div id="recaptcha-container"></div>
+      <br>
+      <ion-button (click)="sendCode()" color="primary" expand="block">Send otp</ion-button>
+  </ion-card>
+
+  <ion-card padding *ngIf="windowRef.confirmationResult">
+    <ion-item>
+      <ion-label position="floating">Verify Code</ion-label>
+      <ion-input [(ngModel)]="verificationCode" type="text"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button (click)="verifyCode()" color="primary" expand="block" fill="outline">Verify</ion-button>
   </ion-card>
 </ion-content>
